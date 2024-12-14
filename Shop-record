@@ -1,0 +1,83 @@
+
+import java.util.Scanner;
+public class recordarrayy {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int code[]={1,2,3};
+        String item[]={"Milk","Butter","Bread"};
+        int price[]={15,10,15};
+        int stock[]={5,10,15};
+        boolean flag;
+        do
+        {
+            System.out.println("Enter code [1,2,3]");
+            int co=sc.nextInt();
+            sc.nextLine();
+            String fi="";
+            int fp=0;
+            int fs=0;
+            for(int i=0;i<3;i++)
+            {
+                if(co==code[i])
+                {
+                    System.out.println("Your Code :  "+code[i]);
+                    System.out.println("Item : "+item[i]);
+                    System.out.println("Price : "+price[i]);
+                    System.out.println("Stock : "+stock[i]);
+                    fi=item[i];
+                    fp=price[i];
+                    fs=stock[i];
+                }
+            }
+            System.out.println("Do you want to purchase "+fi+"(yes/no)");
+            String confirm =sc.nextLine();
+            if("yes".equalsIgnoreCase(confirm))
+            {
+                System.out.println("Enter the Quantity");
+                int fq=sc.nextInt();
+                sc.nextLine();
+                if(fq<=fs)
+                {
+                    int tot=fp*fq;
+                    System.out.println("Gross Price of :"+fq+" "+fi+" "+tot);
+                    System.out.println("Confirm[yes/No]");
+                    String cf=sc.nextLine();
+                    if("yes".equalsIgnoreCase(cf))
+                    {
+                        System.out.println("Your item "+fi+" of Quantity "+fq+" will be ready to purcase ");
+                        int remain_stock=fs-fq;
+                        System.out.println("Remaining Stock of "+fi+" "+remain_stock);
+                        break;
+                    }
+                    else if("No".equalsIgnoreCase(cf))
+                    {
+                        System.out.println("YOur Transaction is cancelled");
+                        break;
+                    }
+                }
+                else
+                {
+                    System.out.println("Out of stock !!");
+                    break;
+                }
+            }
+            else if("No".equalsIgnoreCase(confirm))
+            {
+                System.out.println("Do you want to chane the code[yes/no]");
+                String recheck=sc.nextLine();
+                if("yes".equalsIgnoreCase(recheck))
+                {
+                    flag=true;
+                    System.out.println("\n");
+                }
+                else if("No".equalsIgnoreCase(recheck))
+                {
+                    System.out.println("Visit another times :");
+                    flag=false;
+                    break;
+                }
+            }
+        }while(true);
+    }
+    
+}
